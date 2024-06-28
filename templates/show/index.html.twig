@@ -1,22 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{article.title}} {% endblock %}
+{% block title %}
+	{{article.title}}
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1> {{ article.title }} </h1>
-    <button>
-        <a href="{{ path('edit', {'id': article.id}) }}">Edit</a>  
-    </button>
-    {# button create #}
-    <button>
-        <a href="{{ path('create') }}">Create</a>
-    </button>
-    <p> {{ article.content | nl2br }} </p>
-</div>
+	<section class="text-center my-3">
+		<h1 class="my-3">
+			{{ article.title }}
+		</h1>
+		<div class="gap-5">
+			<a href="{{ path('edit', {'id': article.id}) }}" class="btn btn-primary text-decoration-none text-white">Modifier</a>
+			<a href="{{ path('create') }}" class="btn btn-success text-decoration-none text-white">Crée un article</a>
+		</div>
+		<p class="my-3" >
+			{{ article.content | nl2br }}
+		</p>
+	</section>
 {% endblock %}

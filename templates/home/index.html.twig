@@ -4,48 +4,33 @@
 {% endblock %}
 
 {% block body %}
-	<style>
-		.example-wrapper {
-			margin: 1em auto;
-			max-width: 800px;
-			width: 95%;
-			font: 18px / 1.5 sans-serif;
-		}
-		.example-wrapper code {
-			background: #F5F5F5;
-			padding: 2px 6px;
-		}
-        .btn {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 10px;
-        
-        }
-        a {
-            color: white;
-            text-decoration: none;
-        }
-	</style>
 
-	<div class="example-wrapper">
-		<h1>Bienvenue sur le blog des débutants en symfony ✅</h1>
+	<h1 class="my-5">Bienvenue sur le blog des débutants en symfony ✅</h1>
 
-		Tu apprendras plein de choses ici, c'est promis! 🚀:
+	<h2>Tu apprendras plein de choses ici, c'est promis! 🚀:</h2>
+	<section class="my-5">
 		{% for post in posts %}
-			<h2>{{ post.title }}</h2>
-			<p>{{ post.summary }}</p>
-			<button class="btn">
-				<a href="{{ path('show', {slug: post.slug, id: post.id}) }}">Lire la suite</a>
-			</button>
-            <time>Crée le {{ post.createdAt|date('d/m/Y') }}</time>
+			<div class="row row-cols-1 row-cols-md-3 g-4">
+				<div class="col">
+					<div class="card">
+						<img src="https://via.placeholder.com/200x100" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">{{ post.title }}</h5>
+							<p class="card-text">{{ post.summary|slice(0, 100) ~ '...' }}</p>
+							<p>
+								<span class="badge bg-secondary">
+									<strong>Auteur</strong>
+									:
+									{{ post.author }}</span>
+							</p>
+							<a href="{{ path('show', {slug: post.slug, id: post.id}) }}" class="btn btn-primary">Lire la suite</a>
+							<time>Crée le
+								{{ post.createdAt|date('d/m/Y') }}</time>
+						</div>
+					</div>
+				</div>
+			</div>
 		{% endfor %}
-	</div>
+	</section>
+
 {% endblock %}

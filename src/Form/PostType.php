@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class PostType extends AbstractType
 {
@@ -20,19 +21,26 @@ class PostType extends AbstractType
         $builder
             ->add('title')
             ->add('slug', null, ['required' => false])
-            ->add('summary')
-            ->add('content')
+            ->add('summary', TextareaType::class, [
+                'label' => 'Résumé'
+            ])
+            ->add('content', TextareaType::class, [
+                'label' => 'Contenu de l\'article'
+            ])
             ->add('created_at', null, [
                 'widget' => 'single_text',
                 'required' => false,
+                'label' => 'Date de création',
             ])
             ->add('updated_at', null, [
                 'widget' => 'single_text',
                 'required' => false,
+                'label' => 'Date de modification',
             ])
             ->add('author', EntityType::class, [
                 'class' => Users::class,
-                'choice_label' => 'id',
+                'choice_label' => 'full_name',
+                'label' => 'Auteur',
             ])
             ->add('modifier', SubmitType::class)
             ->addEventListener(FormEvents:: PRE_SUBMIT, $this->autoSlug(...))
