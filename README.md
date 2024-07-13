@@ -1,5 +1,6 @@
 # Dézipper le projet :
 Assurez-vous de décompresser le fichier contenant le projet dans le répertoire de votre choix.
+Ou bien télécharger le repository gitHub
  
 # Importer la base de données :
 
